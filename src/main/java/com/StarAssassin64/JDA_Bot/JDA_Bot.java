@@ -1,5 +1,6 @@
 package com.StarAssassin64.JDA_Bot;
 
+import com.StarAssassin64.JDA_Bot.Commands.CommandManager;
 import com.StarAssassin64.JDA_Bot.Listeners.EventListener;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -23,7 +24,7 @@ public class JDA_Bot {
         shardManager = builder.build();
 
         // Register Listeners
-        shardManager.addEventListener(new EventListener());
+        shardManager.addEventListener(new EventListener(), new CommandManager());
     }
 
     public ShardManager getShardManager() {

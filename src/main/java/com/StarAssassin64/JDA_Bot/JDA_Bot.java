@@ -1,17 +1,20 @@
 package com.StarAssassin64.JDA_Bot;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
-
 import javax.security.auth.login.LoginException;
 
 public class JDA_Bot {
     private ShardManager shardManager;
+    private final Dotenv config;
 
     public JDA_Bot() throws LoginException {
-        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault("OTcwODE3NTAzOTgwODQ3MTc1.Gz7sLI.gDDzcdk7DelDJ-qUgnMcbQZJsm3JPTyqxYElZ4");
+        config = Dotenv.configure().load();
+        String token = config.get("TOKEN");
+        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
         builder.setStatus(OnlineStatus.ONLINE);
         builder.setActivity(Activity.listening("commands"));
         builder.build();
@@ -19,6 +22,10 @@ public class JDA_Bot {
 
     public ShardManager getShardManager() {
         return shardManager;
+    }
+
+    public Dotenv getConfig() {
+        return config;
     }
 
     public static void main(String[] args) {

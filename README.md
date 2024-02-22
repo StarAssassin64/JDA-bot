@@ -4,8 +4,7 @@
 
 **List of added commands:**
 
-    * !ping | Will be removing
     * /giverole <user> <role> (admin requirement)
-    * /say <message> [channel]
+    * /sendannouncement <message> [channel]
     * /emote <type>
     * /welcome
